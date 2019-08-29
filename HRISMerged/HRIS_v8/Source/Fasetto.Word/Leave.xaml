@@ -1,0 +1,75 @@
+﻿<Window x:Class="Fasetto.Word.Leave"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fasetto.Word"
+        mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Leave" Height="480" Width="830" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid Background="#263238">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="270" />
+            <RowDefinition Height="80" />
+            
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="2">
+            <Label Content="Leave Form" Foreground="#ECEFF1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="From:" Margin="50 0 0 0" Foreground="#ECEFF1" FontSize="25"></Label>
+                <DatePicker x:Name="fromDate" Margin="20 0 0 0" Background="#ECEFF1"  Width="200"></DatePicker>
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="To:" Margin="50 0 0 0" Foreground="#ECEFF1" FontSize="25"></Label>
+                <DatePicker x:Name="toDate" Margin="20 0 0 0" Background="#ECEFF1"  Width="200"></DatePicker>
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <TextBox x:Name="Reason" Padding="10 5 10 0" FontSize="20" TextWrapping="Wrap" VerticalContentAlignment="Top" Height="230" Width="auto"  Margin="20" Background="#ECEFF1"></TextBox>
+            
+        </Grid>
+        <Grid Grid.Row="4" >
+            <Button BorderThickness="0" Content="Cancel" FontSize="23" Background="#F44336" Height="auto" Width="auto" Margin="20" Click="Button_Click"></Button>
+        </Grid>
+        <Grid Grid.Row="4" Grid.Column="1" >
+            <StackPanel Orientation="Horizontal">
+
+                <ComboBox x:Name="CB" SelectedValuePath="POS_NAME" DisplayMemberPath="POS_NAME" Focusable="False" Foreground="#ffffff"  FontSize="20" Background="#009688"  Height="auto" Width="230" Margin="20">
+                
+            </ComboBox>
+                <Button Content="Send" BorderThickness="0" FontSize="23" Background="#009688"  Height="auto" Width="auto" Margin="20" Click="Button_Click_1"></Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="type1" Foreground="#ffffff" FontSize="15" Content="Vacation Leave" Checked="Type1_Checked"></CheckBox>
+                <CheckBox x:Name="type2" Foreground="#ffffff" FontSize="15" Margin="30 0 30 0" Content="Sick Leave" Checked="Type2_Checked"></CheckBox>
+                <CheckBox x:Name="type3" Foreground="#ffffff" FontSize="15" Content="Paternity/Maternity" Checked="Type3_Checked"></CheckBox>
+                <CheckBox x:Name="type4" Foreground="#ffffff" FontSize="15" Margin="30 0 30 0" Content="Birthday Leave" Checked="Type4_Checked"></CheckBox>
+                <CheckBox x:Name="type5" Foreground="#ffffff" FontSize="15" Content="Terminal Leave" Checked="Type5_Checked"></CheckBox>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10 3">
+            <Button x:Name="ButtonMinimize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" WindowChrome.IsHitTestVisibleInChrome="True" Click="ButtonMinimize_Click">
+                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="#05133C"/>
+            </Button>
+            <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" WindowChrome.IsHitTestVisibleInChrome="True" Click="ButtonClose_Click">
+                <materialDesign:PackIcon Kind="Power" Foreground="#05133C"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

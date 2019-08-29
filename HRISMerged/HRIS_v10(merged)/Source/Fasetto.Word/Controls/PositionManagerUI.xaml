@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="Fasetto.Word.PositionManagerUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fasetto.Word"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:controls="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1024">
+    <Border Background="LightGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Background="#b1006a">
+                <TextBlock Text="Manage Job Positions" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri" FontSize="30" FontWeight="SemiBold" />
+            </Border>
+
+            <Border Padding="10" Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="ButtonBack" Style="{DynamicResource MaterialDesignFlatButton}" Content="Back" Margin="5 0" Click="ButtonBack_Click" VerticalAlignment="Bottom" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="2" Margin="30 10 30 30" HorizontalAlignment="Center" Background="#ECEFF1" Padding="30 30 30 10" CornerRadius="40">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="-50" ShadowDepth="20" Opacity="0.3"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Name="positionTable" Margin="10" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" SelectionMode="Single" IsReadOnly="True" IsManipulationEnabled="True" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="#dd0074" />
+                                <Setter Property="Padding" Value="15" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontSize" Value="14" />
+                                <Setter Property="BorderThickness" Value="0 0 1 2" />
+                                <Setter Property="BorderBrush" Value="DarkGray" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </DataGrid.RenderTransform>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseLeftButtonUp" Handler="Row_Click"/>
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Position ID" Binding="{Binding _POS_ID}" Width="120"/>
+                            <DataGridTextColumn Header="Position Title" Binding="{Binding _POS_NAME}" Width="200"/>
+                            <DataGridTextColumn Header="Department" Binding="{Binding _POS_DEPARTMENT}" Width="230"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10 0 20 0">
+                            <TextBox x:Name="tbJobTitle" HorizontalAlignment="Left" Width="290" Margin="0 40 0 5" materialDesign:HintAssist.Hint="Job Title" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbDepartment" HorizontalAlignment="Left" Width="290" Margin="0,5" materialDesign:HintAssist.Hint="Department" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
+                            <Button x:Name="btnCancel" Margin="5 0" ToolTip="Manage Job Positions" Style="{DynamicResource MaterialDesignFloatingActionButton}" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Click="BtnCancel_Click">
+                                <Button.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Button.RenderTransform>
+                                <materialDesign:PackIcon Kind="Cancel" Height="25" Width="25"/>
+                            </Button>
+                            <Button x:Name="btnDelete" Margin="5 0" ToolTip="Manage Job Positions" Style="{DynamicResource MaterialDesignFloatingActionButton}" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Visibility="Collapsed" Click="BtnDelete_Click">
+                                <Button.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Button.RenderTransform>
+                                <materialDesign:PackIcon Kind="Delete" Height="25" Width="25"/>
+                            </Button>
+                            <Button x:Name="btnSave" Margin="5 0" ToolTip="Manage Job Positions" Style="{DynamicResource MaterialDesignFloatingActionButton}" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Click="BtnSave_Click">
+                                <Button.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Button.RenderTransform>
+                                <materialDesign:PackIcon x:Name="btnSaveIcon" Kind="ContentSave" Height="25" Width="25"/>
+                            </Button>
+                        </StackPanel>
+                        </StackPanel>
+                    </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

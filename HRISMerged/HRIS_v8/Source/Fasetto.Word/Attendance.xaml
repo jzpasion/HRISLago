@@ -1,0 +1,81 @@
+﻿<Window x:Class="Fasetto.Word.Attendance"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fasetto.Word"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Attendance" Height="720" Width="1280" ResizeMode="NoResize" WindowStyle="None" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid Background="#263238">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="
+                           550" />
+
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="3">
+            <Label Content="Attendance" Foreground="#ffffff" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        </Grid>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+            <Border Width="auto" BorderBrush="#ECEFF1" BorderThickness="2" Margin="15" CornerRadius="12">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="From:" Margin="10 0 0 0" Foreground="#ffffff" FontSize="35"></Label>
+                    <DatePicker x:Name="fromDate"  FontSize="25"  Margin="20 0 0 0" Background="#ECEFF1"  Width="350" Height="40" />
+                    <Label Content="To:" Margin="10 0 0 0" Foreground="#ffffff" FontSize="35"></Label>
+                    <DatePicker x:Name="toDate" FontSize="25"  Margin="20 0 0 0" Background="#ECEFF1"  Width="350" Height="40" />
+                    <Button x:Name="sort" BorderThickness="0" Content="Sort" Height="40" Margin="40 0 0 0" Width="240" FontSize="25" Background="#009688" Click="Button_Click"/>
+               
+                </StackPanel>
+            </Border>
+            
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="3" Margin="20">
+            <DataGrid Name="attendance" IsReadOnly="True" IsManipulationEnabled="True" AutoGenerateColumns="False">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#ECEFF1" />
+                        <Setter Property="Padding" Value="15" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="FontSize" Value="16" />
+                        <Setter Property="BorderThickness" Value="0 0 1 2" />
+                        <Setter Property="BorderBrush" Value="#9E9e9e" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name"
+                                  Binding="{Binding FNAME}"      
+                                Width="420" >
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Time in"
+                                Binding="{Binding TIMEIN}"
+                                Width="*"
+                                FontFamily="Times New Roman" />
+                    <DataGridTextColumn Header="Time out"
+                                Binding="{Binding TIMEOUT}"
+                                Width="*"
+                                FontFamily="Times New Roman" />
+                    <DataGridTextColumn Header="Date"
+                                Binding="{Binding DATE}"
+                                Width="*"
+                                FontFamily="Times New Roman" />
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </Grid>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10 3">
+            <Button x:Name="ButtonMinimize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" WindowChrome.IsHitTestVisibleInChrome="True" Click="ButtonMinimize_Click">
+                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="#ffffff"/>
+            </Button>
+            <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" WindowChrome.IsHitTestVisibleInChrome="True" Click="ButtonClose_Click">
+                <materialDesign:PackIcon Kind="Power" Foreground="#ffffff"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,62 @@
+﻿<Window x:Class="Fasetto.Word.ApprovalModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fasetto.Word"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="ApprovalModal" Height="450" Width="400" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid Background="#263238">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="2">
+            <Label Content="Employee Request" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="#ffffff"></Label>
+        </Border>
+        <Border Grid.Row="1" Grid.ColumnSpan="2">
+            <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Name: " Foreground="#ffffff" Padding="30 5 0 0" FontSize="20" />
+                <TextBlock x:Name="empname" Text="" Foreground="#ffffff" Padding="10 5 0 0" FontSize="20" />
+                
+            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Type: " Foreground="#ffffff" Padding="30 5 0 0" FontSize="20" />
+                    <TextBlock x:Name="emptype" Text="" Foreground="#ffffff" Padding="10 5 0 0" FontSize="20" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="From: " Foreground="#ffffff" Padding="30 5 0 0" FontSize="20" />
+                    <TextBlock x:Name="from" Text="" Foreground="#ffffff" Padding="10 5 0 0" FontSize="20" />
+                    <TextBlock Text="To: " Foreground="#ffffff" Padding="10 5 0 0" FontSize="20" />
+                    <TextBlock x:Name="to" Text="" Foreground="#ffffff" Padding="10 5 0 0" FontSize="20" />
+
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#ffffff" Margin="20" CornerRadius="12">
+            <TextBlock x:Name="Reason" Text="" Padding="10 5 10 0" FontSize="20" TextWrapping="Wrap" />
+        </Border>
+
+        <Button x:Name="Approve" Content="Approve" FontSize="20" Grid.Row="3" Grid.Column="1" Width="140" Height="40" Background="#009688" BorderThickness="0" Click="Button_Click"/>
+        <Button x:Name="Decline"  Content="Decline" FontSize="20" Grid.Row="3" Grid.Column="0" Width="140" Height="40" Background="#F44336" BorderThickness="0" Click="Button_Click_1"/>
+        <Button x:Name="Delete" Content="Delete" FontSize="20" Grid.Row="3" Grid.Column="1" Width="140" Height="40" Background="#009688" BorderThickness="0" Click="Delete_Click" />
+        <Button x:Name="Cancel"  Content="Cancel" FontSize="20" Grid.Row="3" Grid.Column="0" Width="140" Height="40" Background="#F44336" BorderThickness="0" Click="Cancel_Click" />
+        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10 3">
+            <Button x:Name="ButtonMinimize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" WindowChrome.IsHitTestVisibleInChrome="True" Click="ButtonMinimize_Click">
+                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="#05133C"/>
+            </Button>
+            <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" WindowChrome.IsHitTestVisibleInChrome="True" Click="ButtonClose_Click">
+                <materialDesign:PackIcon Kind="Power" Foreground="#05133C"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="Fasetto.Word.PayrollUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fasetto.Word"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:controls="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1500" Loaded="UserControl_Loaded">
+    <Border Background="LightGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Background="#AFB42B">
+                <TextBlock Text="Payroll" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri" FontSize="30" FontWeight="SemiBold" />
+            </Border>
+
+            <Border Padding="10" Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnBack" Style="{DynamicResource MaterialDesignFlatButton}" Content="Back" Margin="5 0" Click="BtnBack_Click"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="2" Margin="30 10 30 30" HorizontalAlignment="Center" Background="#ECEFF1" Padding="30 30 30 10" CornerRadius="40">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="-50" ShadowDepth="20" Opacity="0.3"/>
+                </Border.Effect>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Margin="0 0 40 0">
+                            <TextBlock Text="Employee Details" FontSize="20" Margin="0 0 0 5" HorizontalAlignment="Center"/>
+                            <TextBox x:Name="tbEmpId" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Employee ID" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="First Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbMiddleName" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Middle Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Last Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbDepartment" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Department" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbWorkedDays" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Worked Days" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbSSS" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="SSS No." Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbPagIbig" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Pag-Ibig No." Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbPhHealth" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Phil-Health No." Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbBir" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="TIN No." Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="1" Margin="0 0 40 0">
+                            <TextBlock Text="Working Date" Margin="0 0 0 5" FontSize="20" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                <TextBlock Text="From:  " VerticalAlignment="Center" FontSize="20" Foreground="SlateGray" />
+                                <DatePicker x:Name="dpWorkingFrom" FontSize="18" Focusable="False" IsTodayHighlighted="True" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" />
+
+                                <TextBlock Text="To:  " Margin="80 0 0 0" VerticalAlignment="Center" FontSize="20" Foreground="SlateGray" />
+                                <DatePicker x:Name="dpWorkingTo" FontSize="18" Focusable="False" IsTodayHighlighted="True" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox HorizontalAlignment="Left" Width="90" Margin="0 5 10 5" materialDesign:HintAssist.Hint="VL Used" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox HorizontalAlignment="Left" Width="100" Margin="0 5 40 5" materialDesign:HintAssist.Hint="VL Balance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+
+                                <TextBox HorizontalAlignment="Left" Width="90" Margin="0 5 10 5" materialDesign:HintAssist.Hint="SL Used" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox HorizontalAlignment="Left" Width="100" Margin="0 5 40 5" materialDesign:HintAssist.Hint="SL Balance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+
+                            <TextBlock Text="Earnings" FontSize="20" Margin="0 30 0 5" HorizontalAlignment="Center"/>
+
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBox x:Name="tbBasicPay" HorizontalAlignment="Left" Width="200" Margin="0 5 40 5" materialDesign:HintAssist.Hint="Basic Pay" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbOverTime" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Over Time" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 20 0 0">
+                                <TextBox x:Name="tbNightDif" HorizontalAlignment="Left" Width="200" Margin="0 5 40 5" materialDesign:HintAssist.Hint="Night Differential" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbAllowance" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Allowances" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 20 0 0">
+                                <TextBox x:Name="tbRegHoliday" HorizontalAlignment="Left" Width="200" Margin="0 5 40 5" materialDesign:HintAssist.Hint="Regular Holiday" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbSpeHoliday" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Special Holiday" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 20 0 0">
+                                <TextBox x:Name="tbRestDay" HorizontalAlignment="Left" Width="200" Margin="0 5 40 5" materialDesign:HintAssist.Hint="Rest Day" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbAddlDay" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Addl Day" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 20 0 0">
+                                <TextBox x:Name="tbTotalEarnings" HorizontalAlignment="Left" Width="200" Margin="0 5 40 5" materialDesign:HintAssist.Hint="Total Earnings" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Margin="0 0 0 0">
+                            <TextBlock Text="Contributions" FontSize="20" Margin="0 0 0 5" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="tbDedSSS" HorizontalAlignment="Left" Width="200" Margin="0 5 40 5" materialDesign:HintAssist.Hint="SSS Deduction" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbDedPagIbig" HorizontalAlignment="Left" Width="200" Margin="0 5" materialDesign:HintAssist.Hint="Pag-Ibig Deduction" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="tbDedPhHealth" HorizontalAlignment="Left" Width="200" Margin="0 5 40 5" materialDesign:HintAssist.Hint="Phil-Health Deduction" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbDedBir" HorizontalAlignment="Left" Width="200" Margin="0 5" materialDesign:HintAssist.Hint="BIR Deduction" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+
+                            <TextBlock Text="Loans" FontSize="20" Margin="0 30 0 5" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="tbLoanSSS" HorizontalAlignment="Left" Width="200" Margin="0 5 40 5" materialDesign:HintAssist.Hint="SSS Loan" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbLoanPagIbig" HorizontalAlignment="Left" Width="200" Margin="0 5" materialDesign:HintAssist.Hint="Pag-Ibig Loan" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </StackPanel>
+
+                            <TextBox x:Name="tbDedLateUndertimeAbsent" HorizontalAlignment="Left" Width="440" Margin="5 30 5 0" materialDesign:HintAssist.Hint="Late/Under time/Absences" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            <TextBox x:Name="tbDedOther" HorizontalAlignment="Left" Width="440" Margin="0,5" materialDesign:HintAssist.Hint="Other Deductions" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+
+                            <TextBox x:Name="tbTotalDeductions" HorizontalAlignment="Center" Width="200" Margin="0 20 0 5" materialDesign:HintAssist.Hint="Total Deductions" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+
+                            <Border Background="#827717" Width="400" Height="100" Margin="0 30 0 0">
+                                <TextBox x:Name="tbNetPay" Foreground="#FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Margin="0 5 0 5" materialDesign:HintAssist.Hint="Net Pay" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                            </Border>
+                        </StackPanel>
+
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

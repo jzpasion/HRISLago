@@ -1,0 +1,203 @@
+height 125.92
+width 354.15
+
+
+height 166.4
+width 472.5
+
+<!--Delete Position-->
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[spDeleteEducation]    Script Date: 08/24/2019 12:55:09 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spDeletePosition]
+	-- Add the parameters for the stored procedure here
+	@POS_ID varchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	DELETE POSITION_TABLE WHERE POS_ID=@POS_ID;
+END
+
+
+
+
+<!--insert position modified-->
+
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[spInsertPosition]    Script Date: 08/24/2019 1:13:34 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[spInsertPosition]
+	-- Add the parameters for the stored procedure here
+	@POS_NAME varchar(50),
+	@POS_DEPARTMENT varchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT INTO POSITION_TABLE(POS_NAME, POS_DEPARTMENT) VALUES (@POS_NAME, @POS_DEPARTMENT);
+END
+
+
+
+<!--get positions modified-->
+
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[GetPositions]    Script Date: 08/24/2019 1:15:43 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[GetPositions]
+	-- Add the parameters for the stored procedure here
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT * FROM POSITION_TABLE;
+END
+
+
+<!--delete holiday-->
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[spDeleteHoliday]    Script Date: 08/26/2019 7:21:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spDeleteHoliday]
+	-- Add the parameters for the stored procedure here
+	@HOLIDAY_ID int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	DELETE HOLIDAY_TABLE WHERE HOLIDAY_ID = @HOLIDAY_ID;
+END
+
+
+<!--Get holidays-->
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[spGetHolidays]    Script Date: 08/26/2019 7:22:32 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spGetHolidays]
+	-- Add the parameters for the stored procedure here
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT * FROM HOLIDAY_TABLE;
+END
+
+
+<!--Insert Holiday-->
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[spInsertHoliday]    Script Date: 08/26/2019 7:23:11 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spInsertHoliday]
+	-- Add the parameters for the stored procedure here
+	@HOLIDAY_NAME varchar(50),
+	@HOLIDAY_DATE date,
+	@HOLIDAY_TYPE varchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT INTO HOLIDAY_TABLE(HOLIDAY_NAME, HOLIDAY_DATE, HOLIDAY_TYPE) VALUES (@HOLIDAY_NAME, @HOLIDAY_DATE, @HOLIDAY_TYPE);
+END
+
+
+<!--Update Holiday-->
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[spUpdateHoliday]    Script Date: 08/26/2019 7:25:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[spUpdateHoliday]
+	-- Add the parameters for the stored procedure here
+	@HOLIDAY_ID int,
+	@HOLIDAY_NAME varchar(50),
+	@HOLIDAY_DATE date,
+	@HOLIDAY_TYPE varchar(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	UPDATE HOLIDAY_TABLE SET HOLIDAY_NAME = @HOLIDAY_NAME, HOLIDAY_DATE = @HOLIDAY_DATE, HOLIDAY_TYPE = @HOLIDAY_TYPE WHERE HOLIDAY_ID = @HOLIDAY_ID;
+END

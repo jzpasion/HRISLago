@@ -1,0 +1,65 @@
+﻿<Window x:Class="Fasetto.Word.Daily"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fasetto.Word"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Daily" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid Background="#263238">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="270" />
+            <RowDefinition Height="80" />
+
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="2">
+            <Label Content="Daily Report" Foreground="#ECEFF1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Project:" Margin="50 0 0 0" Foreground="#ECEFF1" FontSize="20"></Label>
+                <TextBox Width="250" Padding="2 0 0 0" FontSize="18" Background="#ECEFF1" Height="30"></TextBox>
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="From:" Margin="0 0 0 0" Foreground="#ECEFF1" FontSize="20"></Label>
+                <materialDesign:TimePicker x:Name="Fromtime" Background="#ECEFF1" Height="30" Width="120"  FontSize="18" Padding="2 0 0 0" />
+               
+                <Label Content="To:" Margin="30 0 0 0" Foreground="#ECEFF1" FontSize="20"></Label>
+                <materialDesign:TimePicker x:Name="Totime" Background="#ECEFF1" Height="30" Width="120"  FontSize="18" Padding="2 0 0 0" />
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="33*"/>
+                <ColumnDefinition Width="67*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Padding="10 5 10 0" FontSize="20" TextWrapping="Wrap" VerticalContentAlignment="Top" Height="230" Width="auto"  Margin="20" Background="#ECEFF1" Grid.ColumnSpan="2"></TextBox>
+
+        </Grid>
+        <Grid Grid.Row="3" >
+            <Button Content="Cancel" BorderThickness="0" FontSize="23" Background="#F44336" Height="auto" Width="auto" Margin="20" Click="Button_Click"></Button>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1" >
+            <Button BorderThickness="0" Content="Send" FontSize="23" Background="#009688"  Height="auto" Width="auto" Margin="20"></Button>
+        </Grid>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10 3">
+            <Button x:Name="ButtonMinimize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" WindowChrome.IsHitTestVisibleInChrome="True" Click="ButtonMinimize_Click">
+                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="#ffffff"/>
+            </Button>
+            <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" WindowChrome.IsHitTestVisibleInChrome="True" Click="ButtonClose_Click">
+                <materialDesign:PackIcon Kind="Power" Foreground="#ffffff"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

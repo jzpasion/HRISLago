@@ -1,0 +1,61 @@
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[spUpdateEmployee]    Script Date: 08/21/2019 4:36:59 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[spUpdateEmployee]
+	-- Add the parameters for the stored procedure here
+	@EMP_NO varchar(50),
+	@FIRST_NAME varchar(50),
+	@MIDDLE_NAME varchar(50),
+	@LAST_NAME varchar(50),
+	@GENDER varchar(50),
+	@BIRTHDAY varchar(50),
+	@NATIONALITY varchar(50),
+	@PASSPORT varchar(100),
+	@RELIGION varchar(50),
+	@BIRTH_PLACE varchar(100),
+	@EMP_STATUS varchar(50),
+	@EMAIL_ADDRESS varchar(70),
+	@CONTACT varchar(50),
+	@PRESENT_ADDRESS varchar(250),
+	@PERMANENT_ADDRESS varchar(250),
+	@DATE_JOINED varchar(50),
+	@END_PROVITION varchar(50),
+	@POS_ID int,
+	@IOE_PERSON varchar(150),
+	@IOE_RELATION varchar(50),
+	@IOE_ADDRESS varchar(150),
+	@IOE_CONTACT varchar(50),
+	@HOURLY_RATE decimal(18, 2),
+	@MONTHLY_SALARY decimal(18, 2),
+	@SSS_NO varchar(50),
+	@PHIL_HEALTH_NO varchar(50),
+	@PAG_IBIG_NO varchar(50),
+	@BIR_NO varchar(50),
+	@DEDUC_SSS decimal(18, 2),
+	@DEDUC_PHIL_HEALTH decimal(18, 2),
+	@DEDUC_PAG_IBIG decimal(18, 2),
+	@DEDUC_BIR decimal(18, 2)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	UPDATE EMPLOYEE_TABLE SET FIRST_NAME = @FIRST_NAME, MIDDLE_NAME = @MIDDLE_NAME, 
+	LAST_NAME = @LAST_NAME, GENDER = @GENDER, BIRTHDAY = @BIRTHDAY, NATIONALITY = @NATIONALITY, PASSPORT = @PASSPORT, RELIGION = @RELIGION, BIRTH_PLACE = @BIRTH_PLACE,
+	EMP_STATUS = @EMP_STATUS, EMAIL_ADDRESS = @EMAIL_ADDRESS, CONTACT = @CONTACT, PRESENT_ADDRESS = @PRESENT_ADDRESS, PERMANENT_ADDRESS = @PERMANENT_ADDRESS, DATE_JOINED = @DATE_JOINED,
+	END_PROVITION = @END_PROVITION, POS_ID = @POS_ID, IOE_PERSON = @IOE_PERSON, IOE_RELATION = @IOE_RELATION, IOE_ADDRESS = @IOE_ADDRESS, IOE_CONTACT = @IOE_CONTACT, HOURLY_RATE = @HOURLY_RATE,
+	MONTHLY_SALARY = @MONTHLY_SALARY, SSS_NO = @SSS_NO, PHIL_HEALTH_NO = @PHIL_HEALTH_NO, PAG_IBIG_NO = @PAG_IBIG_NO, BIR_NO = @BIR_NO, DEDUC_SSS = @DEDUC_SSS, DEDUC_PHIL_HEALTH = @DEDUC_PHIL_HEALTH,
+	DEDUC_PAG_IBIG = @DEDUC_PAG_IBIG, DEDUC_BIR = @DEDUC_BIR WHERE EMP_NO = @EMP_NO;  
+END
+
