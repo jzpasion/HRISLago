@@ -29,5 +29,7 @@ namespace Fasetto.Word.Core
         public string _ENDPROVISION { get; set; }  
         public string _POSITION { get; set; }
         public string _DEPARTMENT { get; set; }
+        public double _HOURLY_RATE { get; set; }
+        public double _MONTHLY_SALARY { get; set; }
     }
 }

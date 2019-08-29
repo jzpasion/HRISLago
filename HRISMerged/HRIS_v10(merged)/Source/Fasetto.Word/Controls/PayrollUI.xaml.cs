@@ -48,7 +48,12 @@ namespace Fasetto.Word
             tbPagIbig.Text = PayrollDetails.paydetails.PAG_IBIG;
             tbPhHealth.Text = PayrollDetails.paydetails.PHIL;
             tbBir.Text = PayrollDetails.paydetails.BIR;
-            tbBasicPay.Text = PayrollDetails.paydetails.MONTHLY_SALARY;
+            tbBasicPay.Text = PayrollDetails.paydetails.MONTHLY_SALARY.ToString();
+            tbDedSSS.Text = PayrollDetails.paydetails.DEDUC_SSS.ToString();
+            tbDedPagIbig.Text = PayrollDetails.paydetails.DEDUC_PAG_IBIG.ToString();
+            tbDedPhHealth.Text = PayrollDetails.paydetails.DEDUC_PHIL.ToString();
+            tbDedBir.Text = PayrollDetails.paydetails.DEDUC_BIR.ToString();
+
         }
     }
 }

@@ -41,6 +41,8 @@ namespace Fasetto.Word.Core
                     item._EMAIL = (string)reader["EMAIL_ADDRESS"];
                     item._POSITION = (string)reader["POS_NAME"];
                     item._DEPARTMENT = (string)reader["POS_DEPARTMENT"];
+                    item._MONTHLY_SALARY = (double)reader["MONTHLY_SALARY"];
+                    item._HOURLY_RATE = (double)reader["HOURLY_RATE"];
                     //item._DATEJOINED = (string)reader["DATE_JOINED"];
                     //item._ENDPROVISION = (string)reader["END_PROVISION"];
                 }

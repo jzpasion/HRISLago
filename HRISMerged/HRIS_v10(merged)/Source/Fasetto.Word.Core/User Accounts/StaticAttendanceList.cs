@@ -54,4 +54,9 @@ namespace Fasetto.Word.Core
     {
         public static PayrollItem paydetails = new PayrollItem();
     }
+
+    public class SingleSalary
+    {
+        public static PayrollItem salary = new PayrollItem();
+    }
 }

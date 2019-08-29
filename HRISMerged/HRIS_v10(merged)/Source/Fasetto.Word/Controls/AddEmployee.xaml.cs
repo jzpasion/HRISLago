@@ -326,7 +326,9 @@ namespace Fasetto.Word
                     item._DEDUC_PAG_IBIG = double.Parse(tbDedPagIbig.Text);
                     item._DEDUC_BIR = double.Parse(tbDedBIR.Text);
 
-                    item._HOURLY_RATE = 300;
+                    double dailyrate = (double.Parse(tbMonthlySalary.Text) / 26);
+
+                    item._HOURLY_RATE = (dailyrate/8);
 
                     SetEduBackground(item._EMP_NO);
                     SetExpBackground(item._EMP_NO);

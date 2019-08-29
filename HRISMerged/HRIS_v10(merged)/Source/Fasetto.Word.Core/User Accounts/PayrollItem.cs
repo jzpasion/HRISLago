@@ -22,11 +22,13 @@ namespace Fasetto.Word.Core
         public string PHIL { get; set; }
         public string BIR { get; set; }
 
-        public string MONTHLY_SALARY { get; set; }
+        public double MONTHLY_SALARY { get; set; }
         public double DEDUC_SSS { get; set; }
         public double DEDUC_PAG_IBIG { get; set; }
         public double DEDUC_PHIL { get; set; }
         public double DEDUC_BIR { get; set; }
-
+        
+        public double SINGLE_SALARY { get; set; }
+        public double HOURLY_RATE { get; set; }
     }
 }

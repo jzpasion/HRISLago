@@ -150,9 +150,12 @@ namespace Fasetto.Word.Core
                 cmd.Parameters.Add(new SqlParameter("@LOG_ID", timeitem.LOG_ID));
                 cmd.Parameters.Add(new SqlParameter("@EMP_ID", timeitem.EMP_ID));
                 cmd.Parameters.Add(new SqlParameter("@LOG_MINUTES", timeitem.MINUTES));
+                cmd.Parameters.Add(new SqlParameter("@LOG_PAY_DAY", timeitem.PAY_DAY));
+                cmd.Parameters.Add(new SqlParameter("@REMARKS", timeitem.REMARKS));
                 cmd.ExecuteNonQuery();
                 db.Close();
             }
         }
+
     }
 }

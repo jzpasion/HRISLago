@@ -17,5 +17,8 @@ namespace Fasetto.Word.Core
 
         public string TIME_OUT { get; set; }
         public double MINUTES { get; set; }
+        public double PAY_DAY { get; set; }
+
+        public string REMARKS { get; set; }
     }
 }

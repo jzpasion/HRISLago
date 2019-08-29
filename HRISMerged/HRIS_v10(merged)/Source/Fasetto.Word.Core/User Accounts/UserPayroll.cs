@@ -48,8 +48,36 @@ namespace Fasetto.Word.Core
                 }
                 db.Close();
             }
-               
+            
+            
 
+        }
+        public void Salary(int id)
+        {
+            using (var db = DBConnection.CreateConnection())
+            {
+                db.Open();
+                var sql = "dbo.TIME_OUT";
+                var cmd = new SqlCommand(sql, db);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@EMP_ID", id));
+
+                var reader = cmd.ExecuteReader();
+                if (!reader.HasRows)
+                {
+                    return;
+                }
+                while (reader.Read())
+                {
+                    PayrollItem item = new PayrollItem();
+                    item.SINGLE_SALARY = (double)reader["MONTHLY_SALARY"];
+                    item.HOURLY_RATE = (double)reader["HOURLY_RATE"];
+
+                    SingleSalary.salary = item;
+
+                }
+                db.Close();
+            }
         }
     }
 }
