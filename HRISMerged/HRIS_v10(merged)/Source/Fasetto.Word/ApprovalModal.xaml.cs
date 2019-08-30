@@ -132,12 +132,21 @@ namespace Fasetto.Word
                 
                 if(typeholder == "Leave")
                 {
+                    DateTime fd = DateTime.Parse(StaticApprovalItem.staticApprovalModalItem.PENDING_LEAVE_FROM.ToString());
+                    string passfrom = fd.ToString("MM/dd/yy");
+
+                    DateTime td = DateTime.Parse(StaticApprovalItem.staticApprovalModalItem.PENDING_LEAVE_TO.ToString());
+                    string passtd = td.ToString("MM/dd/yy");
+
+                    var span = td.Subtract(fd).TotalDays;
+
+
                     utime.leave(StaticApprovalItem.staticApprovalModalItem.EMPID, StaticApprovalItem.staticApprovalModalItem.PENDING_TYPE, StaticApprovalItem.staticApprovalModalItem.PENDING_TYPE, "" + StaticApprovalItem.staticApprovalModalItem.PENDING_LEAVE_FROM + " to " + StaticApprovalItem.staticApprovalModalItem.PENDING_LEAVE_TO + "");
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Approved!");
+                    
                     this.Close();
                 }
 

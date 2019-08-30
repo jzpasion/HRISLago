@@ -20,5 +20,11 @@ namespace Fasetto.Word.Core
         public double PAY_DAY { get; set; }
 
         public string REMARKS { get; set; }
+
+        public double LOG_LATE_MINUTES { get; set; }
+        public double LOG_LATE_DEDUC { get; set; }
+        public double LOG_OT_MINUTES { get; set; }
+        public double LOG_OT_TOTAL { get; set; }
+        public double LOG_UNDERTIME { get; set; }
     }
 }

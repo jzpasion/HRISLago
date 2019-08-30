@@ -152,6 +152,12 @@ namespace Fasetto.Word.Core
                 cmd.Parameters.Add(new SqlParameter("@LOG_MINUTES", timeitem.MINUTES));
                 cmd.Parameters.Add(new SqlParameter("@LOG_PAY_DAY", timeitem.PAY_DAY));
                 cmd.Parameters.Add(new SqlParameter("@REMARKS", timeitem.REMARKS));
+                cmd.Parameters.Add(new SqlParameter("@LOG_LATE_MINUTES", timeitem.LOG_LATE_MINUTES));
+                cmd.Parameters.Add(new SqlParameter("@LOG_LATE_DEDUCTION", timeitem.LOG_LATE_DEDUC));
+                cmd.Parameters.Add(new SqlParameter("@LOG_OT_MINUTES", timeitem.LOG_OT_MINUTES));
+                cmd.Parameters.Add(new SqlParameter("@LOG_OT_TOTAL", timeitem.LOG_OT_TOTAL));
+                cmd.Parameters.Add(new SqlParameter("@LOG_UNDERTIME_MINUTES", timeitem.LOG_UNDERTIME));
+
                 cmd.ExecuteNonQuery();
                 db.Close();
             }

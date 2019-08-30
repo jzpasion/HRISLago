@@ -44,10 +44,16 @@ namespace Fasetto.Word
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
+            DateTime fd = DateTime.Parse(fromDate.ToString());
+            DateTime td = DateTime.Parse(toDate.ToString());
 
             if (type1.IsChecked == false && type2.IsChecked == false && type3.IsChecked == false && type4.IsChecked == false && type5.IsChecked == false || Reason.Text == "" || fromDate.Text == "" || toDate.Text == "" || CB.Text == "")
             {
                 MessageBox.Show("Please fill all required Inputs");
+            }
+            else if(fd > td)
+            {
+                MessageBox.Show("Invalid Dates");
             }
             else
             {
