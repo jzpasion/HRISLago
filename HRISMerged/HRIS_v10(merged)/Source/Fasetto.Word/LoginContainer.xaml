@@ -45,5 +45,6 @@
         <Frame x:Name="LoginMainFrame" Content="{Binding CurrentPage, Converter={local:ApplicationPageValueConverter}}" Background="Transparent" >
            
         </Frame>
+        <Label x:Name="TimeShow" FontSize="30" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Bottom"></Label>
     </Grid>
 </Window>

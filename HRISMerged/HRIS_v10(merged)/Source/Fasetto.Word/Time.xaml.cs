@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -36,6 +37,26 @@ namespace Fasetto.Word
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             timekeep.Text = DateTime.Now.ToString("hh:mm:ss tt");
+            DateTime timeout;
+            DateTime.TryParse(DateTime.Now.ToString("hh:mm:ss tt"), out timeout);
+            DateTime time5pm = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 5:00:00 PM");
+            if (timeout == time5pm)
+            {
+                Form f = new Form();// object of the form
+                f.WindowState = FormWindowState.Maximized;
+                f.BringToFront();
+                f.TopMost = true;
+                f.FormBorderStyle = FormBorderStyle.None;
+                f.Opacity = 0.5;
+                f.Load += new EventHandler(f_Load);
+                f.Show();
+                return;
+            }
+        }
+        void f_Load(object sender, EventArgs e)
+        {
+            System.Windows.MessageBox.Show("Its Already 5:00PM Save your files!");
+            ((Form)sender).Close();
         }
         private void ButtonMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -106,6 +127,10 @@ namespace Fasetto.Word
         double finalpayday;
         double totalHours;
         double totalMinutes;
+        double totalLateminutes = 0;
+        double totalUndertimeMinutes = 0;
+        double totalOTMinutes = 0;
+        double OThour = 0;
         private void Btn_time_out_Click(object sender, RoutedEventArgs e)
         {
             UserTime utiem = new UserTime();
@@ -120,75 +145,255 @@ namespace Fasetto.Word
             DateTime.TryParse(DateTime.Now.ToString("HH:mm"), out timeout);
             DateTime t2 = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 5:00:00 PM");
             DateTime t3 = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 12:00:00 PM");
-
-            if (timein < t1 && timeout > t2)
+            DateTime t4 = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 1:00:00 PM");
+            DateTime t5 = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 6:00:00 PM");
+            //Normal day
+            if (timein <= t1 &&( timeout >= t2 && timeout < t5))
             {
 
                 totalHours = t2.Subtract(t1).TotalHours-1;
                 totalMinutes = t2.Subtract(t1).TotalMinutes-60;
                 remarks = "On-Duty";
             }
-            else if(timein > t1 && timeout > t2)
-            {
-                double totalLateminutes = timein.Subtract(t1).Minutes;
-                totalHours = t2.Subtract(timein).TotalHours - 1;
-                totalMinutes = t2.Subtract(timein).TotalMinutes - 60;
-
-            }else if(timein < t1 && timeout > t3)
+            //Half-day morning  8 to after 12pm
+            else if(timein < t1 &&  timeout > t3 && timeout < t4 && timeout <t2)
             {
                 totalHours = t3.Subtract(t1).TotalHours;
                 totalMinutes = t3.Subtract(t1).TotalMinutes ;
                 remarks = "Half-day";
             }
+            //Half-day morning 8 to before 12pm
             else if (timein < t1 && timeout < t3)
             {
-                totalHours = t3.Subtract(t1).TotalHours;
-                totalMinutes = t3.Subtract(t1).TotalMinutes;
+                totalUndertimeMinutes = t3.Subtract(timeout).TotalMinutes;
+                totalHours = timeout.Subtract(t1).TotalHours;
+                totalMinutes = timeout.Subtract(t1).TotalMinutes;
                 remarks = "Half-day";
             }
-            else if (timein > t1 && timeout > t3)
-            {
-                double totalLateminutes = timein.Subtract(t1).Minutes;
-                totalHours = t3.Subtract(t1).TotalHours;
-                totalMinutes = t3.Subtract(t1).TotalMinutes;
-                remarks = "Half-day";
-            }
+            //half-day morning late 8 to before 12pm
             else if (timein > t1 && timeout < t3)
             {
-                double totalLateminutes = timein.Subtract(t1).Minutes;
-                totalHours = t3.Subtract(t1).TotalHours;
-                totalMinutes = t3.Subtract(t1).TotalMinutes;
+                totalUndertimeMinutes = t3.Subtract(timeout).TotalMinutes;
+                totalLateminutes = timein.Subtract(t1).Minutes;
+                totalHours = timeout.Subtract(timein).TotalHours;
+                totalMinutes = timeout.Subtract(timein).TotalMinutes;
+
                 remarks = "Half-day";
+            }
+            //half-day morning late 8 to after 12pm
+            else if (timein > t1 && timeout >= t3 && timeout < t4  && timeout <t2)
+            {
+                totalLateminutes = timein.Subtract(t1).Minutes;
+                totalHours = t3.Subtract(timein).TotalHours;
+                totalMinutes = t3.Subtract(timein).TotalMinutes;
+                remarks = "Half-day";
+            }
+            //Late
+            else if (timein > t1 && timeout >= t2 && timeout < t5)
+            {
+                totalLateminutes = timein.Subtract(t1).Minutes;
+                totalHours = t2.Subtract(timein).TotalHours - 1;
+                totalMinutes = t2.Subtract(timein).TotalMinutes - 60;
+
+                remarks = "On-Duty";
+
+            }
+            //half-day afternoon 1pm to after 5pm
+            else if (timein > t3 && timein <= t4 && timeout >= t2 && timeout < t5)
+            {
+                totalHours = t2.Subtract(t4).TotalHours;
+                totalMinutes = t2.Subtract(t4).TotalMinutes;
+                remarks = "Half-day";
+            }
+
+            //half-day afternoon late 1pm to  after 5pm
+            else if(timein > t4 && timeout >= t2 && timeout < t5)
+            {
+                totalLateminutes = timein.Subtract(t4).TotalMinutes;
+                totalHours = t2.Subtract(timein).TotalHours;
+                totalMinutes = t2.Subtract(timein).TotalMinutes;
+                remarks = "Half-day";
+            }
+
+            //half-day afternoon 1pm to before 5pm
+            else if(timein > t3 &&timein <= t4 && timeout < t2)
+            {
+                totalUndertimeMinutes = t2.Subtract(timeout).TotalMinutes;
+                totalHours = timeout.Subtract(t4).TotalHours;
+                totalMinutes = timeout.Subtract(t4).TotalMinutes;
+                    remarks = "Half-day";
+            }
+            //half-day afternoon late 1pm to before 5pm
+            else if(timein > t4 && timeout < t2)
+            {
+                totalUndertimeMinutes = t2.Subtract(timeout).TotalMinutes;
+                totalLateminutes = timein.Subtract(t4).TotalMinutes;
+                totalHours = timeout.Subtract(timein).TotalHours;
+                totalMinutes = timeout.Subtract(timein).TotalMinutes;
+                remarks = "Half-day";
+            }
+            //Late and UnderTime
+            else if (timein > t1 && timeout < t2)
+            {
+                totalLateminutes = timein.Subtract(t1).TotalMinutes;
+                totalUndertimeMinutes = t2.Subtract(timeout).TotalMinutes;
+                totalHours = timeout.Subtract(timein).TotalHours - 1;
+                totalMinutes = timeout.Subtract(timein).TotalMinutes - 60;
+                remarks = "On-Duty";
+
+            }
+            //UnderTIme
+            else if (timein < t1 && timeout < t2)
+            {
+                totalUndertimeMinutes = t2.Subtract(timeout).TotalMinutes;
+                totalHours = timeout.Subtract(t1).TotalHours - 1;
+                totalMinutes = timeout.Subtract(t1).TotalMinutes - 60;
+                remarks = "On-Duty";
+            }
+
+            //half-day afternoon Late OT
+            else if (timein > t4 && timeout < t5)
+            {
+                totalOTMinutes = timeout.Subtract(t2).TotalMinutes;
+                totalLateminutes = timein.Subtract(t4).Minutes;
+                totalHours = timeout.Subtract(timein).TotalHours;
+                totalMinutes = timeout.Subtract(timein).TotalMinutes;
+                remarks = "Half-day";
+            }
+            //half-day afternoon OT
+            else if (timein <= t4 && timeout < t5)
+            {
+                totalOTMinutes = timeout.Subtract(t2).TotalMinutes;
+                totalHours = timeout.Subtract(t4).TotalHours;
+                totalMinutes = timeout.Subtract(t4).TotalMinutes;
+                remarks = "Half-day";
+            }
+            //OT
+            else if(timein <= t1 && timeout >= t5)
+            {
+                totalOTMinutes = timeout.Subtract(t2).TotalMinutes;
+                totalHours = timeout.Subtract(t1).TotalHours - 1;
+                totalMinutes = timeout.Subtract(t1).TotalMinutes -60;
+                remarks = "On-Duty";
+            }
+            
+
+            //OT LATE 
+            else if (timein > t1 && timeout >= t5)
+            {
+                totalLateminutes = timein.Subtract(t1).Minutes;
+                totalOTMinutes = timeout.Subtract(t2).TotalMinutes;
+                totalHours = timeout.Subtract(timein).TotalHours - 1;
+                totalMinutes = timeout.Subtract(timein).TotalMinutes - 60;
+            }
+
+            else
+            {
+                itemtime.EMP_ID = mitem._EMPID;
+                itemtime.TIME_OUT = "Forgot to Timeout";
+                itemtime.HOURS = 0;
+                itemtime.LOG_ID = LogItem.staticLogIdItem.LOG_ID;
+                itemtime.MINUTES = 0;
+                itemtime.PAY_DAY = 0;
+                itemtime.REMARKS = "Forgot to Timeout";
+                itemtime.LOG_LATE_MINUTES = 0;
+                itemtime.LOG_LATE_DEDUC = 0;
+                itemtime.LOG_OT_MINUTES = 0;
+                itemtime.LOG_OT_TOTAL = 0;
+                itemtime.LOG_UNDERTIME = 0;
+                Timeout(itemtime);
+                btn_time_in.IsEnabled = true;
+                btn_time_out.IsEnabled = false;
+                this.Close();
             }
 
 
 
 
-
-            //totalHours = timeout.Subtract(passTimein).TotalHours;
-            //totalMinutes = timeout.Subtract(passTimein).TotalMinutes;
-
+            //2decimal place total hours, total minutes
             double roundhrs = Math.Round((Double)totalHours,2 ) ;
             double roundminutes = Math.Round((Double)totalMinutes,2 );
 
+            //get employee salary per hour
             double hourate = mitem._HOURLY_RATE;
 
+            //computation hourlyrate (rate per hour / 60 minutes)
             double minuterate = (hourate / 60);
-            
 
-           
+            //computation late
+            double TotalMinuteDeduction = ((totalUndertimeMinutes+totalLateminutes) * minuterate);
 
-           
-            if(roundminutes >= 0 && roundminutes <= 545)
+            //computation OT
+
+            if(totalOTMinutes >= 60 && totalOTMinutes >90)
             {
-                remarks = "On-Duty";
+                OThour = 1;
                 
-                roundminutes = roundminutes - 60;
-                double payday = (minuterate * roundminutes);
-                finalpayday = Math.Round((double)payday, 2);
             }
-            else 
+            else if (totalOTMinutes >= 90 && totalOTMinutes < 120)
+            {
+                OThour = 1.5;
+            }
+            else if (totalOTMinutes >= 120 && totalOTMinutes >150)
+            {
+                OThour = 2;
+            }
+            else if (totalOTMinutes >= 150 && totalOTMinutes < 180)
+            {
+                OThour = 2.5;
+            }
+            else if (totalOTMinutes >= 180 && totalOTMinutes < 210)
+            {
+                OThour = 3;
+            }
+            else if (totalOTMinutes >= 210 && totalOTMinutes < 240)
+            {
+                OThour = 3.5;
+            }
+            else if (totalOTMinutes >= 240 && totalOTMinutes < 270)
+            {
+                OThour = 4;
+            }
+            else if (totalOTMinutes >= 270 && totalOTMinutes < 300)
+            {
+                OThour = 4.5;
+            }
+            else if (totalOTMinutes >= 300 && totalOTMinutes < 330)
+            {
+                OThour = 5;
+            }
+            else if (totalOTMinutes >= 330 && totalOTMinutes < 360)
+            {
+                OThour = 5.5;
+            }
+            else if (totalOTMinutes >= 360 && totalOTMinutes < 390)
+            {
+                OThour = 6;
+            }
+            else if (totalOTMinutes >= 390 && totalOTMinutes < 420)
+            {
+                OThour = 6.5;
+            }
+            else if (totalOTMinutes >= 420 && totalOTMinutes < 450)
+            {
+                OThour = 7;
+            }
+            else if (totalOTMinutes >= 450 && totalOTMinutes < 480)
+            {
+                OThour = 7.5;
+            }
+            else if (totalOTMinutes >= 480)
+            {
+                OThour = 8;
+            }
 
+            double TotalOvertime = (minuterate * OThour * 1.25);
+
+            //computation PayDay
+            double paydaywdeduc = (minuterate * roundminutes - TotalMinuteDeduction);
+            double finpaydaywOT = (paydaywdeduc + TotalOvertime);
+            finalpayday = Math.Round((double)finpaydaywOT, 2);
+     
 
 
             itemtime.EMP_ID = mitem._EMPID;
@@ -198,6 +403,13 @@ namespace Fasetto.Word
             itemtime.MINUTES = roundminutes;
             itemtime.PAY_DAY = finalpayday;
             itemtime.REMARKS = remarks;
+            itemtime.LOG_LATE_MINUTES = totalLateminutes;
+            itemtime.LOG_LATE_DEDUC = TotalMinuteDeduction;
+            itemtime.LOG_OT_MINUTES = totalOTMinutes;
+            itemtime.LOG_OT_TOTAL = TotalOvertime;
+            itemtime.LOG_UNDERTIME = totalUndertimeMinutes;
+
+
 
 
             Timeout(itemtime);
