@@ -69,6 +69,8 @@ namespace Fasetto.Word
             tbMiddleName.Text = empItem._MIDDLE_NAME;
             tbLastName.Text = empItem._LAST_NAME;
             tbReligion.Text = empItem._RELIGION;
+            tbVLBal.Text = empItem._VL_BALANCE.ToString();
+            tbSLBal.Text = empItem._SL_BALANCE.ToString();
             if (empItem._GENDER == "Male")
             {
                 rbMale.IsChecked = true;

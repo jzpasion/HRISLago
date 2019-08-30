@@ -62,6 +62,8 @@ namespace Fasetto.Word.Core
                     item._DEDUC_PHIL_HEALTH = objConverter.ConvertFromDBVal<double>(reader["DEDUC_PHIL_HEALTH"]);
                     item._DEDUC_PAG_IBIG = objConverter.ConvertFromDBVal<double>(reader["DEDUC_PAG_IBIG"]);
                     item._DEDUC_BIR = objConverter.ConvertFromDBVal<double>(reader["DEDUC_BIR"]);
+                    item._VL_BALANCE = objConverter.ConvertFromDBVal<float>(reader["VL_BALANCE"]);
+                    item._SL_BALANCE = objConverter.ConvertFromDBVal<float>(reader["SL_BALANCE"]);
 
                     StaticEmpoyeeCollection.staticEmployeeList.Add(item);
                 }

@@ -47,6 +47,8 @@ namespace Fasetto.Word.Core
                 cmd.Parameters.Add(new SqlParameter("@DEDUC_PHIL_HEALTH", myItem._DEDUC_PHIL_HEALTH));
                 cmd.Parameters.Add(new SqlParameter("@DEDUC_PAG_IBIG", myItem._DEDUC_PAG_IBIG));
                 cmd.Parameters.Add(new SqlParameter("@DEDUC_BIR", myItem._DEDUC_BIR));
+                cmd.Parameters.Add(new SqlParameter("@VL_BALANCE", myItem._VL_BALANCE));
+                cmd.Parameters.Add(new SqlParameter("@SL_BALANCE", myItem._SL_BALANCE));
                 cmd.ExecuteNonQuery();
                 db.Close();
             }
@@ -93,6 +95,8 @@ namespace Fasetto.Word.Core
                 cmd.Parameters.Add(new SqlParameter("@DEDUC_PHIL_HEALTH", myItem._DEDUC_PHIL_HEALTH));
                 cmd.Parameters.Add(new SqlParameter("@DEDUC_PAG_IBIG", myItem._DEDUC_PAG_IBIG));
                 cmd.Parameters.Add(new SqlParameter("@DEDUC_BIR", myItem._DEDUC_BIR));
+                cmd.Parameters.Add(new SqlParameter("@VL_BALANCE", myItem._VL_BALANCE));
+                cmd.Parameters.Add(new SqlParameter("@SL_BALANCE", myItem._SL_BALANCE));
                 cmd.ExecuteNonQuery();
                 db.Close();
             }
@@ -112,29 +116,5 @@ namespace Fasetto.Word.Core
                 db.Close();
             }
         }
-
-        //public void UpdateData(EmployeeItem item)
-        //{
-        //    using (var db = DBConnection.CreateConnection())
-        //    {
-        //        db.Open();
-
-        //        //var sql = "dbo.spUpdateEmployee";
-        //        //var cmd = new SqlCommand(sql, db);
-        //        //cmd.CommandType = CommandType.StoredProcedure;
-        //        //cmd.Parameters.Add(new SqlParameter("@Employee_ID", item._employeeId));
-        //        //cmd.Parameters.Add(new SqlParameter("@First_Name", item._firstName));
-        //        //cmd.Parameters.Add(new SqlParameter("@Middle_Name", item._middleName));
-        //        //cmd.Parameters.Add(new SqlParameter("@Last_Name", item._lastName));
-        //        //cmd.Parameters.Add(new SqlParameter("@Nationality", item._nationality));
-        //        //cmd.Parameters.Add(new SqlParameter("@Religion", item._religion));
-        //        //cmd.Parameters.Add(new SqlParameter("@Email", item._eMail));
-        //        //cmd.Parameters.Add(new SqlParameter("@Contact_Number", item._contactNum));
-        //        //cmd.Parameters.Add(new SqlParameter("@Present_Address", item._presentAddress));
-        //        //cmd.Parameters.Add(new SqlParameter("@Permanent_Address", item._permanentAddress));
-        //        //cmd.ExecuteNonQuery();
-        //        db.Close();
-        //    }
-        //}
     }
 }

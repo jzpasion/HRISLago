@@ -50,24 +50,24 @@ namespace Fasetto.Word
             RunStoryBoardFromName("FlatBtn", "buttonIE");
         }
 
-        private void ButtonLA_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void ButtonA_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            RunStoryBoardFromName("ElevateBtn", "buttonLA");
+            RunStoryBoardFromName("ElevateBtn", "buttonA");
         }
 
-        private void ButtonLA_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void ButtonA_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            RunStoryBoardFromName("FlatBtn", "buttonLA");
+            RunStoryBoardFromName("FlatBtn", "buttonA");
         }
 
-        private void ButtonOA_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void ButtonH_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            RunStoryBoardFromName("ElevateBtn", "buttonOA");
+            RunStoryBoardFromName("ElevateBtn", "ButtonH");
         }
 
-        private void ButtonOA_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void ButtonH_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            RunStoryBoardFromName("FlatBtn", "buttonOA");
+            RunStoryBoardFromName("FlatBtn", "ButtonH");
         }
 
         private void ButtonRA_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -80,30 +80,35 @@ namespace Fasetto.Word
             RunStoryBoardFromName("FlatBtn", "buttonRA");
         }
 
-        private void ButtonPA_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void ButtonTK_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            RunStoryBoardFromName("ElevateBtn", "buttonPA");
+            RunStoryBoardFromName("ElevateBtn", "buttonTK");
         }
 
-        private void ButtonPA_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void ButtonTK_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            RunStoryBoardFromName("FlatBtn", "buttonPA");
+            RunStoryBoardFromName("FlatBtn", "buttonTK");
         }
 
-        private void ButtonPA_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void buttonTK_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            HolidayManagerUI holidayManagetUI = new HolidayManagerUI();
-            DashboardPage.mHolidayTransitioner.Items.Add(holidayManagetUI);
-            DashboardPage.mHolidayTransitioner.SelectedIndex = 1;
+            
         }
 
-        private void ButtonLA_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ButtonA_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var pw = Window.GetWindow(this);
             pw.Hide();
             Approval approve = new Approval(HRISMainWindow.mItem);
             approve.ShowDialog();
             pw.Close();
+        }
+
+        private void ButtonH_Click(object sender, RoutedEventArgs e)
+        {
+            HolidayManagerUI holidayManagetUI = new HolidayManagerUI();
+            DashboardPage.mHolidayTransitioner.Items.Add(holidayManagetUI);
+            DashboardPage.mHolidayTransitioner.SelectedIndex = 1;
         }
     }
 }

@@ -196,6 +196,9 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PayrollSelectDateDialog.xaml.cs">
+      <DependentUpon>PayrollSelectDateDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pendings.xaml.cs">
       <DependentUpon>Pendings.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,9 @@
     </Compile>
     <Compile Include="Time.xaml.cs">
       <DependentUpon>Time.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeKeepingForm.xaml.cs">
+      <DependentUpon>TimeKeepingForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
@@ -372,6 +378,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PayrollSelectDateDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pendings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -407,6 +417,10 @@
     <Page Include="Time.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeKeepingForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

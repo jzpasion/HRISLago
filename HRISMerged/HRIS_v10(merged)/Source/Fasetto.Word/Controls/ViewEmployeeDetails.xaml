@@ -68,6 +68,8 @@
                                         </ComboBox>
                                     </StackPanel>-->
                                     <!--<TextBox x:Name="tbReligion" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="Religion" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>-->
+                                    <TextBox x:Name="tbVLBal" IsReadOnly="True" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="VL Balance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                    <TextBox x:Name="tbSLBal" IsReadOnly="True" HorizontalAlignment="Left" Width="200" Margin="0,5" materialDesign:HintAssist.Hint="SL Balance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1" Margin="0 0 40 0">
                                     <StackPanel Orientation="Horizontal">

@@ -26,6 +26,25 @@ namespace Fasetto.Word
         {
             InitializeComponent();
             employee_no = emp_no;
+
+            var item = new EmployeeItem();
+            item = StaticEmpoyeeCollection.staticEmployeeList.Where(t => t._EMP_NO.Equals(emp_no)).FirstOrDefault();
+
+
+            tbEmpId.Text = item._EMP_NO;
+            tbFirstName.Text = item._FIRST_NAME;
+            tbMiddleName.Text = item._MIDDLE_NAME;
+            tbLastName.Text = item._LAST_NAME;
+            //tbDepartment.Text = item.;
+            tbSSS.Text = item._SSS_NO;
+            tbPagIbig.Text = item._PAG_IBIG_NO;
+            tbPhHealth.Text = item._PHIL_HEALTH_NO;
+            tbBir.Text = item._BIR_NO;
+            //tbBasicPay.Text = PayrollDetails.paydetails.MONTHLY_SALARY.ToString();
+            //tbDedSSS.Text = PayrollDetails.paydetails.DEDUC_SSS.ToString();
+            //tbDedPagIbig.Text = PayrollDetails.paydetails.DEDUC_PAG_IBIG.ToString();
+            //tbDedPhHealth.Text = PayrollDetails.paydetails.DEDUC_PHIL.ToString();
+            //tbDedBir.Text = PayrollDetails.paydetails.DEDUC_BIR.ToString();
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -36,24 +55,8 @@ namespace Fasetto.Word
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            UserPayroll upay = new UserPayroll();
-            upay.UPayroll(employee_no);
 
-            tbEmpId.Text = employee_no;
-            tbFirstName.Text = PayrollDetails.paydetails.FIRST_NAME;
-            tbMiddleName.Text = PayrollDetails.paydetails.MIDDLE_NAME;
-            tbLastName.Text = PayrollDetails.paydetails.LAST_NAME;
-            tbDepartment.Text = PayrollDetails.paydetails.DEPARTMENT;
-            tbSSS.Text = PayrollDetails.paydetails.SSS;
-            tbPagIbig.Text = PayrollDetails.paydetails.PAG_IBIG;
-            tbPhHealth.Text = PayrollDetails.paydetails.PHIL;
-            tbBir.Text = PayrollDetails.paydetails.BIR;
-            tbBasicPay.Text = PayrollDetails.paydetails.MONTHLY_SALARY.ToString();
-            tbDedSSS.Text = PayrollDetails.paydetails.DEDUC_SSS.ToString();
-            tbDedPagIbig.Text = PayrollDetails.paydetails.DEDUC_PAG_IBIG.ToString();
-            tbDedPhHealth.Text = PayrollDetails.paydetails.DEDUC_PHIL.ToString();
-            tbDedBir.Text = PayrollDetails.paydetails.DEDUC_BIR.ToString();
-
+          
         }
     }
 }

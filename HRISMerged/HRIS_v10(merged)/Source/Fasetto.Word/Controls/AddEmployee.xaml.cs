@@ -329,6 +329,8 @@ namespace Fasetto.Word
                     double dailyrate = (double.Parse(tbMonthlySalary.Text) / 26);
 
                     item._HOURLY_RATE = (dailyrate/8);
+                    item._VL_BALANCE = 0;
+                    item._SL_BALANCE = 0;
 
                     SetEduBackground(item._EMP_NO);
                     SetExpBackground(item._EMP_NO);

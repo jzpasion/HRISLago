@@ -207,12 +207,12 @@ namespace Fasetto.Word
             }
             else
             {
-      
+                PayrollSelectDateDialog psdd = new PayrollSelectDateDialog(selectedEmployeeId);
+                psdd.ShowDialog();
 
-                PayrollUI payrollui = new PayrollUI(selectedEmployeeId);
-                EmployeeManagement.mEmpTransitioner.Items.Add(payrollui);
-                EmployeeManagement.mEmpTransitioner.SelectedIndex = 1;
-
+                //PayrollUI payrollui = new PayrollUI(selectedEmployeeId);
+                //EmployeeManagement.mEmpTransitioner.Items.Add(payrollui);
+                //EmployeeManagement.mEmpTransitioner.SelectedIndex = 1;
 
                 GetAllEmployees();
             }

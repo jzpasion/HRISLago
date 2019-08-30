@@ -36,5 +36,7 @@
         public double _DEDUC_PHIL_HEALTH { get; set; }
         public double _DEDUC_PAG_IBIG { get; set; }
         public double _DEDUC_BIR { get; set; }
+        public float _VL_BALANCE { get; set; }
+        public float _SL_BALANCE { get; set; }
     }
 }

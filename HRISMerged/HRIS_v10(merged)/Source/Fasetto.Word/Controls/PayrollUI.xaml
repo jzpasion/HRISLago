@@ -62,11 +62,11 @@
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBox HorizontalAlignment="Left" Width="90" Margin="0 5 10 5" materialDesign:HintAssist.Hint="VL Used" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
-                                <TextBox HorizontalAlignment="Left" Width="100" Margin="0 5 40 5" materialDesign:HintAssist.Hint="VL Balance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbVlUsed" HorizontalAlignment="Left" Width="90" Margin="0 5 10 5" materialDesign:HintAssist.Hint="VL Used" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbVlBal" HorizontalAlignment="Left" Width="100" Margin="0 5 40 5" materialDesign:HintAssist.Hint="VL Balance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
 
-                                <TextBox HorizontalAlignment="Left" Width="90" Margin="0 5 10 5" materialDesign:HintAssist.Hint="SL Used" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
-                                <TextBox HorizontalAlignment="Left" Width="100" Margin="0 5 40 5" materialDesign:HintAssist.Hint="SL Balance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbSUsed" HorizontalAlignment="Left" Width="90" Margin="0 5 10 5" materialDesign:HintAssist.Hint="SL Used" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
+                                <TextBox x:Name="tbSlBal" HorizontalAlignment="Left" Width="100" Margin="0 5 40 5" materialDesign:HintAssist.Hint="SL Balance" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" FontSize="20"/>
                             </StackPanel>
 
                             <TextBlock Text="Earnings" FontSize="20" Margin="0 30 0 5" HorizontalAlignment="Center"/>

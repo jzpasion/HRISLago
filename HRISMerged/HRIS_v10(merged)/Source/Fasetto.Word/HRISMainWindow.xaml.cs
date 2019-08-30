@@ -204,6 +204,15 @@ namespace Fasetto.Word
             }
         }
 
+        private void MenuProfile_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var pw = Window.GetWindow(this);
+            pw.Hide();
+            Profile approve = new Profile(HRISMainWindow.mItem);
+            approve.ShowDialog();
+            pw.Close();
+        }
+
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
