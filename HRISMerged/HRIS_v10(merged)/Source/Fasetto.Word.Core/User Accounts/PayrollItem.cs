@@ -30,5 +30,9 @@ namespace Fasetto.Word.Core
         
         public double SINGLE_SALARY { get; set; }
         public double HOURLY_RATE { get; set; }
+
+     
+
+
     }
 }

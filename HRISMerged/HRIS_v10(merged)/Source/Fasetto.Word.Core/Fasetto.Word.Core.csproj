@@ -87,6 +87,7 @@
     <Compile Include="User Accounts\Comboboxitem.cs" />
     <Compile Include="User Accounts\GetAttendance.cs" />
     <Compile Include="User Accounts\PayrollItem.cs" />
+    <Compile Include="User Accounts\PayrollTotalItem.cs" />
     <Compile Include="User Accounts\UserHolidayItem.cs" />
     <Compile Include="User Accounts\PendingItem.cs" />
     <Compile Include="User Accounts\RequestItem.cs" />
