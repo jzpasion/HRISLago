@@ -1,0 +1,24 @@
+USE [HRIS]
+GO
+/****** Object:  StoredProcedure [dbo].[GET_ID_FROM_EMPNO]    Script Date: 9/1/2019 7:48:05 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[GET_ID_FROM_EMPNO]
+	-- Add the parameters for the stored procedure here
+	@EMP_NO VARCHAR(50)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT EMPLOYEE_TABLE.EMP_ID,POSITION_TABLE.POS_NAME FROM EMPLOYEE_TABLE LEFT JOIN POSITION_TABLE ON EMPLOYEE_TABLE.POS_ID = POSITION_TABLE.POS_ID WHERE EMPLOYEE_TABLE.EMP_NO = @EMP_NO;
+END

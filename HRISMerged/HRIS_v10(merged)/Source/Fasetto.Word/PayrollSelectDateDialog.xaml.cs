@@ -54,7 +54,10 @@ namespace Fasetto.Word
 
             upay.between(id, passfrom, passto);
 
-            PayrollUI payrollui = new PayrollUI(mSelectedEmpId, passfrom, passto , PayrollDetails.paydetails.DEPARTMENT);
+
+            int days = Convert.ToInt32(tdDays.Text);
+
+            PayrollUI payrollui = new PayrollUI(mSelectedEmpId, passfrom, passto , PayrollDetails.paydetails.DEPARTMENT, days);
             EmployeeManagement.mEmpTransitioner.Items.Add(payrollui);
             EmployeeManagement.mEmpTransitioner.SelectedIndex = 1;
             Close();

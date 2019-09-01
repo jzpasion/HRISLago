@@ -25,14 +25,15 @@ namespace Fasetto.Word
         string datefrom;
         string dateto;
         string empdep;
-        public PayrollUI(string emp_no , string from , string to,string department)
+        int payDays;
+        public PayrollUI(string emp_no , string from , string to,string department,int days)
         {
             InitializeComponent();
             employee_no = emp_no;
             datefrom = from;
             dateto = to;
             empdep = department;
-            
+            payDays = days;
             var item = new EmployeeItem();
             item = StaticEmpoyeeCollection.staticEmployeeList.Where(t => t._EMP_NO.Equals(emp_no)).FirstOrDefault();
 
@@ -40,20 +41,30 @@ namespace Fasetto.Word
             double netPay = PayrollTotals.Totals.Sum(x => x.TOTAL_EARNINGS);
             double absentlateDeduction = PayrollTotals.Totals.Sum(x => x.TOTAL_DEDUCTION);
             double totalOt = PayrollTotals.Totals.Sum(x => x.TOTAL_OVERTIME);
-            int count = PayrollTotals.Totals.Count();
+            
             
             //basic salary
             double basicpay = (item._MONTHLY_SALARY / 2);
             double basicpayround = Math.Round((double)basicpay, 2);
 
+           
+        
             //totalEarnings + overtime
-            double totalEarnings = (netPay-absentlateDeduction);
+            double totalEarnings = (netPay+absentlateDeduction);
+
+            //days holiday/saturday paid
+            double DaysPaid = ((basicpay / 13)*payDays);
+            double roundDaysPaid = Math.Round((double)DaysPaid, 2);
+
+            double count = PayrollTotals.Totals.Count() + payDays;
+
+            double totalPaywithDays = (totalEarnings+ roundDaysPaid);
 
             //total Deduction
             double totalDeduction = (absentlateDeduction + item._DEDUC_BIR + item._DEDUC_PAG_IBIG + item._DEDUC_PHIL_HEALTH + item._DEDUC_SSS);
 
             //total netpay
-            double totalNetPay = (totalEarnings- totalDeduction);
+            double totalNetPay = (totalPaywithDays - totalDeduction);
 
 
             tbEmpId.Text = item._EMP_NO;
@@ -72,7 +83,7 @@ namespace Fasetto.Word
             tbNetPay.Text = totalNetPay.ToString();
             tbWorkedDays.Text = count.ToString();
             tbBasicPay.Text = basicpayround.ToString();
-            tbTotalEarnings.Text = totalEarnings.ToString();
+            tbTotalEarnings.Text = totalPaywithDays.ToString();
             tbDedSSS.Text = item._DEDUC_SSS.ToString();
             tbDedPagIbig.Text = item._DEDUC_PAG_IBIG.ToString() ;
             tbDedPhHealth.Text = item._DEDUC_PHIL_HEALTH.ToString();
@@ -84,6 +95,7 @@ namespace Fasetto.Word
         {
             EmployeeManagement.mEmpTransitioner.SelectedIndex = 0;
             EmployeeManagement.mEmpTransitioner.Items.RemoveAt(1);
+            PayrollTotals.Totals.Clear();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
