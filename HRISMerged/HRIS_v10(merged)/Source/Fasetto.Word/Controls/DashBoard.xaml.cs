@@ -90,11 +90,6 @@ namespace Fasetto.Word
             RunStoryBoardFromName("FlatBtn", "buttonTK");
         }
 
-        private void buttonTK_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            
-        }
-
         private void ButtonA_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var pw = Window.GetWindow(this);
@@ -109,6 +104,12 @@ namespace Fasetto.Word
             HolidayManagerUI holidayManagetUI = new HolidayManagerUI();
             DashboardPage.mHolidayTransitioner.Items.Add(holidayManagetUI);
             DashboardPage.mHolidayTransitioner.SelectedIndex = 1;
+        }
+
+        private void ButtonTK_Click(object sender, RoutedEventArgs e)
+        {
+            PayrollSelectDateDialog tkDialog = new PayrollSelectDateDialog();
+            tkDialog.ShowDialog();
         }
     }
 }

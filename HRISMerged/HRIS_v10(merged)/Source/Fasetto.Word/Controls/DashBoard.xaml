@@ -433,7 +433,7 @@
                             </Grid>
                         </Button>
 
-                        <Button x:Name="buttonTK" Width="450" Height="auto" Margin="20" Padding="10 20" Background="#546E7A" RenderTransformOrigin="0.5,0.5" MouseEnter="ButtonTK_MouseEnter" MouseLeave="ButtonTK_MouseLeave">
+                        <Button x:Name="buttonTK" Width="450" Height="auto" Margin="20" Padding="10 20" Background="#546E7A" RenderTransformOrigin="0.5,0.5" MouseEnter="ButtonTK_MouseEnter" MouseLeave="ButtonTK_MouseLeave" Click="ButtonTK_Click">
                             <Button.Effect>
                                 <DropShadowEffect Color="Black" Direction="-50" ShadowDepth="0" Opacity="0.3"/>
                             </Button.Effect>

@@ -25,7 +25,7 @@
                         <materialDesign:PackIcon Kind="ArrowBack"/>
                     </Button>
                 </Border>
-                <TextBlock VerticalAlignment="Center" Text="Payroll Generator" FontSize="20" Foreground="#FFFFFF" />
+                <TextBlock x:Name="lblDialogName" VerticalAlignment="Center" Text="Payroll Generator" FontSize="20" Foreground="#FFFFFF" />
             </StackPanel>
         </Border>
         <Border Grid.Row="1" Background="#ECEFF1">
@@ -41,6 +41,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button x:Name="btnGenerate" Width="100" Content="Generate" Margin="0 0 0 20" VerticalAlignment="Center" Click="BtnGenerate_Click"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" x:Name="pnlLoading">
+                    <ProgressBar x:Name="prgLoading" Width="auto" Height="20" />
+                    <TextBlock Text="%" FontSize="15" HorizontalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
         </Border>

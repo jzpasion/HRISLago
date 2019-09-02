@@ -28,6 +28,17 @@ namespace Fasetto.Word
             dpPayTo.SelectedDate = DateTime.Today;
         }
 
+        public PayrollSelectDateDialog()
+        {
+            InitializeComponent();
+
+            lblDialogName.Text = "Time Kepping Genarator";
+            tbEmployeeName.Visibility = Visibility.Collapsed;
+            Height = 350;
+            Width = 400;
+            pnlLoading.Visibility = Visibility.Collapsed;
+        }
+
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             Close();
