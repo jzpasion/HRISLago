@@ -22,6 +22,7 @@
         public string _END_PROVITION { get; set; }
         public string _DATE_REGULAZATION { get; set; }
         public int _POS_ID { get; set; }
+        public string _DEPARTMENT { get; set; }
         public string _IOE_PERSON { get; set; }
         public string _IOE_RELATION { get; set; }
         public string _IOE_ADDRESS { get; set; }

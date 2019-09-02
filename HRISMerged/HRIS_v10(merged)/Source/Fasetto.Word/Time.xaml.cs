@@ -147,6 +147,7 @@ namespace Fasetto.Word
             DateTime t3 = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 12:00:00 PM");
             DateTime t4 = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 1:00:00 PM");
             DateTime t5 = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 6:00:00 PM");
+            DateTime t6 = DateTime.Parse("" + ClockInItem.Clockin.DATE + ", 1:00:00 AM");
             //Normal day
             if (timein <= t1 &&( timeout >= t2 && timeout < t5))
             {
@@ -156,14 +157,14 @@ namespace Fasetto.Word
                 remarks = "On-Duty";
             }
             //Half-day morning  8 to after 12pm
-            else if(timein < t1 &&  timeout > t3 && timeout < t4 && timeout <t2)
+            else if(timein <= t1 &&  timeout >= t3 && timeout < t4 && timeout <t2)
             {
                 totalHours = t3.Subtract(t1).TotalHours;
                 totalMinutes = t3.Subtract(t1).TotalMinutes ;
                 remarks = "Half-day";
             }
             //Half-day morning 8 to before 12pm
-            else if (timein < t1 && timeout < t3)
+            else if (timein <= t1 && timeout < t3)
             {
                 totalUndertimeMinutes = t3.Subtract(timeout).TotalMinutes;
                 totalHours = timeout.Subtract(t1).TotalHours;
@@ -188,8 +189,18 @@ namespace Fasetto.Word
                 totalMinutes = t3.Subtract(timein).TotalMinutes;
                 remarks = "Half-day";
             }
+            //Late halfday
+            else if (timein > t3  && timein > t4 && timeout < t4 && timeout >= t2 && timeout < t5)
+            {
+                totalLateminutes = timein.Subtract(t1).Minutes;
+                totalHours = t2.Subtract(timein).TotalHours - 1;
+                totalMinutes = t2.Subtract(timein).TotalMinutes - 60;
+
+                remarks = "Half-day";
+
+            }
             //Late
-            else if (timein > t1 && timeout >= t2 && timeout < t5)
+            else if (timein > t1 && timein < t3 && timein < t4  && timeout >= t2 && timeout < t5)
             {
                 totalLateminutes = timein.Subtract(t1).Minutes;
                 totalHours = t2.Subtract(timein).TotalHours - 1;
@@ -243,7 +254,7 @@ namespace Fasetto.Word
 
             }
             //UnderTIme
-            else if (timein < t1 && timeout < t2)
+            else if (timein <= t1 && timeout < t2)
             {
                 totalUndertimeMinutes = t2.Subtract(timeout).TotalMinutes;
                 totalHours = timeout.Subtract(t1).TotalHours - 1;
@@ -252,7 +263,7 @@ namespace Fasetto.Word
             }
 
             //half-day afternoon Late OT
-            else if (timein > t4 && timeout < t5)
+            else if ( timein > t4 && timeout > t5)
             {
                 totalOTMinutes = timeout.Subtract(t2).TotalMinutes;
                 totalLateminutes = timein.Subtract(t4).Minutes;
@@ -261,7 +272,7 @@ namespace Fasetto.Word
                 remarks = "Half-day";
             }
             //half-day afternoon OT
-            else if (timein <= t4 && timeout < t5)
+            else if (timein > t3 && timein <= t4 && timeout > t5)
             {
                 totalOTMinutes = timeout.Subtract(t2).TotalMinutes;
                 totalHours = timeout.Subtract(t4).TotalHours;
@@ -269,7 +280,7 @@ namespace Fasetto.Word
                 remarks = "Half-day";
             }
             //OT
-            else if(timein <= t1 && timeout >= t5)
+            else if(timein <= t1 && timeout >= t5 && timeout > t6)
             {
                 totalOTMinutes = timeout.Subtract(t2).TotalMinutes;
                 totalHours = timeout.Subtract(t1).TotalHours - 1;
@@ -279,12 +290,13 @@ namespace Fasetto.Word
             
 
             //OT LATE 
-            else if (timein > t1 && timeout >= t5)
+            else if (timein > t1 && timeout >= t5 && timeout > t6)
             {
                 totalLateminutes = timein.Subtract(t1).Minutes;
                 totalOTMinutes = timeout.Subtract(t2).TotalMinutes;
                 totalHours = timeout.Subtract(timein).TotalHours - 1;
                 totalMinutes = timeout.Subtract(timein).TotalMinutes - 60;
+                remarks = "On-Duty";
             }
 
             else
@@ -304,6 +316,11 @@ namespace Fasetto.Word
                 Timeout(itemtime);
                 btn_time_in.IsEnabled = true;
                 btn_time_out.IsEnabled = false;
+          
+                totalLateminutes = 0;
+                totalUndertimeMinutes = 0;
+                totalOTMinutes = 0;
+                OThour = 0;
                 this.Close();
             }
 
@@ -314,6 +331,7 @@ namespace Fasetto.Word
             double roundhrs = Math.Round((Double)totalHours,2 ) ;
             double roundminutes = Math.Round((Double)totalMinutes,2 );
 
+            double roundminutesnoOT = (roundminutes - totalOTMinutes); 
             //get employee salary per hour
             double hourate = mitem._HOURLY_RATE;
 
@@ -322,10 +340,11 @@ namespace Fasetto.Word
 
             //computation late
             double TotalMinuteDeduction = ((totalUndertimeMinutes+totalLateminutes) * minuterate);
+            double TotalDeduction = Math.Round((Double)TotalMinuteDeduction, 2);
 
             //computation OT
 
-            if(totalOTMinutes >= 60 && totalOTMinutes >90)
+            if (totalOTMinutes >= 60 && totalOTMinutes <90)
             {
                 OThour = 1;
                 
@@ -334,7 +353,7 @@ namespace Fasetto.Word
             {
                 OThour = 1.5;
             }
-            else if (totalOTMinutes >= 120 && totalOTMinutes >150)
+            else if (totalOTMinutes >= 120 && totalOTMinutes <150)
             {
                 OThour = 2;
             }
@@ -387,11 +406,12 @@ namespace Fasetto.Word
                 OThour = 8;
             }
 
-            double TotalOvertime = (minuterate * OThour * 1.25);
+            double TotalOvertime = (hourate * OThour * 1.25);
+            double OTtotaldecimal = Math.Round((double)TotalOvertime, 2);
 
             //computation PayDay
-            double paydaywdeduc = (minuterate * roundminutes - TotalMinuteDeduction);
-            double finpaydaywOT = (paydaywdeduc + TotalOvertime);
+            double paydaywdeduc = (minuterate * roundminutesnoOT - TotalDeduction);
+            double finpaydaywOT = (paydaywdeduc + OTtotaldecimal);
             finalpayday = Math.Round((double)finpaydaywOT, 2);
      
 
@@ -404,9 +424,9 @@ namespace Fasetto.Word
             itemtime.PAY_DAY = finalpayday;
             itemtime.REMARKS = remarks;
             itemtime.LOG_LATE_MINUTES = totalLateminutes;
-            itemtime.LOG_LATE_DEDUC = TotalMinuteDeduction;
-            itemtime.LOG_OT_MINUTES = totalOTMinutes;
-            itemtime.LOG_OT_TOTAL = TotalOvertime;
+            itemtime.LOG_LATE_DEDUC = TotalDeduction;
+            itemtime.LOG_OT_MINUTES = OThour;
+            itemtime.LOG_OT_TOTAL = OTtotaldecimal;
             itemtime.LOG_UNDERTIME = totalUndertimeMinutes;
 
 
@@ -415,6 +435,10 @@ namespace Fasetto.Word
             Timeout(itemtime);
             btn_time_in.IsEnabled = true;
             btn_time_out.IsEnabled = false;
+             totalLateminutes = 0;
+             totalUndertimeMinutes = 0;
+             totalOTMinutes = 0;
+             OThour = 0;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

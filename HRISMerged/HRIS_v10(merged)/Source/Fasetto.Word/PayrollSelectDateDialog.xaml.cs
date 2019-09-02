@@ -13,6 +13,7 @@ namespace Fasetto.Word
     {
         string mSelectedEmpId;
         string mEmpName;
+        UserPayroll upay = new UserPayroll();
         public PayrollSelectDateDialog(string selectedEmpId)
         {
             InitializeComponent();
@@ -46,7 +47,28 @@ namespace Fasetto.Word
 
         private void BtnGenerate_Click(object sender, RoutedEventArgs e)
         {
-            PayrollUI payrollui = new PayrollUI(mSelectedEmpId);
+
+
+            
+            DateTime fd = DateTime.Parse(dpPayFrom.ToString());
+            string passfrom = fd.ToString("MM/dd/yy");
+
+            DateHolder.dates.FROM_DATE = passfrom;
+
+            DateTime td = DateTime.Parse(dpPayTo.ToString());
+            string passto = td.ToString("MM/dd/yy");
+            DateHolder.dates.TO_DATE = passto;
+
+            upay.GetId(mSelectedEmpId);
+
+            int id = PayrollDetails.paydetails.EMP_ID;
+
+            upay.between(id, passfrom, passto);
+
+
+            int days = Convert.ToInt32(tdDays.Text);
+
+            PayrollUI payrollui = new PayrollUI(mSelectedEmpId, passfrom, passto , PayrollDetails.paydetails.DEPARTMENT, days);
             EmployeeManagement.mEmpTransitioner.Items.Add(payrollui);
             EmployeeManagement.mEmpTransitioner.SelectedIndex = 1;
             Close();

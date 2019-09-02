@@ -59,4 +59,13 @@ namespace Fasetto.Word.Core
     {
         public static PayrollItem salary = new PayrollItem();
     }
+
+    public class DateHolder
+    {
+        public static PayrollTotalItem dates = new PayrollTotalItem();
+    }
+    public class PayrollTotals
+    {
+        public static ObservableCollection<PayrollTotalItem> Totals = new ObservableCollection<PayrollTotalItem>(); 
+    }
 }

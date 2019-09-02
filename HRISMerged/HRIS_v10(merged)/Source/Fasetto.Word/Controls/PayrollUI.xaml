@@ -55,10 +55,11 @@
                             <TextBlock Text="Working Date" Margin="0 0 0 5" FontSize="20" HorizontalAlignment="Center"/>
                             <StackPanel Orientation="Horizontal" Margin="0 5">
                                 <TextBlock Text="From:  " VerticalAlignment="Center" FontSize="20" Foreground="SlateGray" />
-                                <DatePicker x:Name="dpWorkingFrom" FontSize="18" Focusable="False" IsTodayHighlighted="True" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" />
+                                <TextBox x:Name="dpWorkingFrom" FontSize="18" Focusable="False"  Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125"  FontFamily="Champagne &amp; Limousines"/>
+                               
 
                                 <TextBlock Text="To:  " Margin="80 0 0 0" VerticalAlignment="Center" FontSize="20" Foreground="SlateGray" />
-                                <DatePicker x:Name="dpWorkingTo" FontSize="18" Focusable="False" IsTodayHighlighted="True" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" />
+                                <TextBox x:Name="dpWorkingTo" FontSize="18" Focusable="False"  Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" FontFamily="Champagne &amp; Limousines"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">

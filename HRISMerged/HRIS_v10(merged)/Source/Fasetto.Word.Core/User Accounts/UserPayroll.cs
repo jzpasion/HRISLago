@@ -79,5 +79,63 @@ namespace Fasetto.Word.Core
                 db.Close();
             }
         }
+
+        public void between(int id , string from ,string to)
+        {
+            using(var db = DBConnection.CreateConnection())
+            {
+                db.Open();
+                var sql = "dbo.GET_PAYROLL_TOTAL";
+                var cmd = new SqlCommand(sql, db);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@EMP_ID", id));
+                cmd.Parameters.Add(new SqlParameter("@FROM_DATE", from));
+                cmd.Parameters.Add(new SqlParameter("@TO_DATE", to));
+                var reader = cmd.ExecuteReader();
+
+                if (!reader.HasRows)
+                {
+                    return;
+                }
+                while (reader.Read())
+                {
+                    PayrollTotalItem item = new PayrollTotalItem();
+                    item.EMP_ID = (int)reader["EMP_ID"];
+                    item.DAYS_COUNT = (string)reader["LOG_DATE"];
+                    item.TOTAL_EARNINGS = (double)reader["LOG_PAY_DAY"];
+                    item.TOTAL_DEDUCTION = (double)reader["LOG_DEDUCTION"];
+                    item.TOTAL_OVERTIME = (double)reader["LOG_OT_TOTAL"];
+
+                    PayrollTotals.Totals.Add(item);
+                }
+                db.Close();
+            }
+        }
+        public void GetId(string number)
+        {
+            using(var db = DBConnection.CreateConnection())
+            {
+                db.Open();
+                var sql = "dbo.GET_ID_FROM_EMPNO";
+                var cmd = new SqlCommand(sql, db);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@EMP_NO", number));
+                var reader = cmd.ExecuteReader();
+
+                if (!reader.HasRows)
+                {
+                    return;
+
+                }
+                while (reader.Read())
+                {
+                    PayrollItem item = new PayrollItem();
+                    item.EMP_ID = (int)reader["EMP_ID"];
+                    item.DEPARTMENT = (string)reader["POS_NAME"];
+
+                    PayrollDetails.paydetails = item;
+                }
+            }
+        }
     }
 }
